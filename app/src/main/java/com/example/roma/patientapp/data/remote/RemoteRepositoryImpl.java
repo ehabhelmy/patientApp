@@ -23,6 +23,7 @@ import com.example.roma.patientapp.data.remote.service.SignInService;
 import com.example.roma.patientapp.data.remote.service.UpdateImageService;
 import com.example.roma.patientapp.data.remote.service.UploadImageService;
 import com.example.roma.patientapp.utils.constants.Constants;
+import com.example.roma.patientapp.utils.constants.NetworkConstants;
 
 import java.io.File;
 import java.util.Map;
@@ -48,63 +49,63 @@ public class RemoteRepositoryImpl implements RemoteRepository {
 
     @Override
     public Observable<SignInResponse> signInPatient(Map<String, Object> parameters) {
-        SignInService service = this.serviceGenerator.createService(SignInService.class);
+        SignInService service = this.serviceGenerator.createService(SignInService.class, NetworkConstants.BASE_URL);
         return service.signInPatient((String) parameters.get(Constants.CODE), (String) parameters.get(Constants.PW));
     }
 
     @Override
     public Observable<SearchDoctorResponse> searchDoctor(Map<String, Object> parameters) {
         final SearchDoctorRequest request = new SearchDoctorRequest();
-        SearchDoctorService service = this.serviceGenerator.createService(SearchDoctorService.class);
+        SearchDoctorService service = this.serviceGenerator.createService(SearchDoctorService.class, NetworkConstants.BASE_URL);
         return service.searchDoctor((String) parameters.get(Constants.TOKEN), (String) parameters.get(Constants.DOCTOR_NAME), "0", "10");
     }
 
     @Override
     public Observable<DoctorDetailsResponse> getDoctorDetails(Map<String, Object> parameters) {
-        DoctorDetailsService service = this.serviceGenerator.createService(DoctorDetailsService.class);
+        DoctorDetailsService service = this.serviceGenerator.createService(DoctorDetailsService.class, NetworkConstants.BASE_URL);
         return service.getDoctorDetails((String) parameters.get(Constants.TOKEN), (String) parameters.get("doctorCode"));
     }
 
     @Override
     public Observable<SpecialitiesResponse> getAllSpecialities(String token) {
-        AllSpecialitiesService service = this.serviceGenerator.createService(AllSpecialitiesService.class);
+        AllSpecialitiesService service = this.serviceGenerator.createService(AllSpecialitiesService.class, NetworkConstants.BASE_URL);
         return service.getAllSpecialities(token);
     }
 
     @Override
     public Observable<RegionResponse> getALlRegions(String token) {
-        AllRegionsService service = this.serviceGenerator.createService(AllRegionsService.class);
+        AllRegionsService service = this.serviceGenerator.createService(AllRegionsService.class, NetworkConstants.BASE_URL);
         return service.getAllRegions(token);
     }
 
     @Override
     public Observable<ChangePasswordResponse> changePassword(Map<String, Object> parameters) {
-        ChangePasswordService service = this.serviceGenerator.createService(ChangePasswordService.class);
+        ChangePasswordService service = this.serviceGenerator.createService(ChangePasswordService.class, NetworkConstants.BASE_URL);
         return service.changePassword((String) parameters.get(Constants.TOKEN), (String) parameters.get(Constants.NEW_PW));
     }
 
     @Override
     public Observable<AppointmentBookedResponse> bookAppointment(Map<String, Object> parameters) {
-        BookAppointmentService service = this.serviceGenerator.createService(BookAppointmentService.class);
+        BookAppointmentService service = this.serviceGenerator.createService(BookAppointmentService.class, NetworkConstants.BASE_URL);
         return service.bookAppointment((String) parameters.get(Constants.TOKEN), (String) parameters.get(Constants.DOCTOR_CODE),
                 (String) parameters.get(Constants.SERVICE_ID), (String) parameters.get(Constants.APPOINTMENT_ID));
     }
 
     @Override
     public Observable<RequestStatusResponse> getRequestStatus(Map<String, Object> parameters) {
-        RequestStatusService service = this.serviceGenerator.createService(RequestStatusService.class);
+        RequestStatusService service = this.serviceGenerator.createService(RequestStatusService.class, NetworkConstants.BASE_URL);
         return service.getRequestStatus((String) parameters.get(Constants.TOKEN), (String) parameters.get(Constants.REQUEST_ID));
     }
 
     @Override
     public Observable<UpdateImageResponse> updateImage(Map<String, Object> parameters) {
-        UpdateImageService service = this.serviceGenerator.createService(UpdateImageService.class);
-        return service.updateImage((String) parameters.get(Constants.TOKEN),(String) parameters.get(Constants.LOCATION));
+        UpdateImageService service = this.serviceGenerator.createService(UpdateImageService.class, NetworkConstants.IMAGE_URL);
+        return service.updateImage((String) parameters.get(Constants.TOKEN), (String) parameters.get(Constants.LOCATION));
     }
 
     @Override
     public Observable<UploadImageResponse> uploadImage(Map<String, Object> parameters) {
-        UploadImageService service = this.serviceGenerator.createService(UploadImageService.class);
+        UploadImageService service = this.serviceGenerator.createService(UploadImageService.class, NetworkConstants.IMAGE_URL);
         MultipartBody.Part requestImagePart = null;
         File image = (File) parameters.get(Constants.FILE);
         if (image != null) {
@@ -112,13 +113,13 @@ public class RemoteRepositoryImpl implements RemoteRepository {
             requestImagePart =
                     MultipartBody.Part.createFormData("file", image.getName(), requestImage);
         }
-        return service.uploadImage((String) parameters.get(Constants.TOKEN),requestImagePart);
+        return service.uploadImage((String) parameters.get(Constants.TOKEN), requestImagePart);
 
     }
 
     @Override
     public Observable<Response<ResponseBody>> downloadImage(Map<String, Object> parameters) {
-        DownloadImageService service = this.serviceGenerator.createService(DownloadImageService.class);
-        return service.downloadImage((String) parameters.get(Constants.TOKEN),(String) parameters.get(Constants.LOCATION));
+        DownloadImageService service = this.serviceGenerator.createService(DownloadImageService.class, NetworkConstants.IMAGE_URL);
+        return service.downloadImage((String) parameters.get(Constants.TOKEN), (String) parameters.get(Constants.LOCATION));
     }
 }
