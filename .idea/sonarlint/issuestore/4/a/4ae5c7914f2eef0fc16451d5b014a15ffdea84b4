@@ -1,0 +1,6 @@
+
+–squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Úâ˜™
+–squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ»¶á
+nsquid:S00116"SRename this field "photo_iv" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÛ§¢ûÿÿÿÿ
+hsquid:S00116"RRename this field "skip_tv" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÞÔýï
+usquid:S00116"ZRename this field "upload_photo_tv" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿’„¶üÿÿÿÿ

@@ -1,0 +1,18 @@
+
+psquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²Ώϋÿÿÿÿ8¬ίΙ,
+vsquid:S00116"ZRename this field "TIMEOUT_CONNECT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ν‚κ98ξαΙ,
+Gsquid:S1068"+Remove this unused "API_KEY" private field.(ª””8­ΌγΙ,
+<squid:S1170"!Make this final field static too.(Ν‚κ98ξαΙ,
+Bsquid:S1170"!Make this final field static too.(‹¶«Θϋÿÿÿÿ8ξαΙ,
+ysquid:S00116"WRename this field "CONTENT_TYPE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·½οψÿÿÿÿ8ξαΙ,
+osquid:S00116"RRename this field "API_KEY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª””8ξαΙ,
+zsquid:S00116"]Rename this field "CONTENT_TYPE_VALUE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Όβλ‰8ξαΙ,
+Nsquid:S1068"3Remove this unused "TIMEOUT_CONNECT" private field.(Ν‚κ98ξαΙ,
+Qsquid:S1068"0Remove this unused "TIMEOUT_READ" private field.(‹¶«Θϋÿÿÿÿ8ξαΙ,
+ysquid:S00116"WRename this field "TIMEOUT_READ" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹¶«Θϋÿÿÿÿ8ξαΙ,
+ssquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²Ώϋÿÿÿÿ8¬ίΙ,
+=squid:S1170"!Make this final field static too.(ª””8ξαΙ,
+fsquid:S00119"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(ό°²8¬ίΙ,
+Vsquid:S1068"5Remove this unused "headerInterceptor" private field.( ε΄γώÿÿÿÿ8υηΙ,
+Bsquid:S1170"!Make this final field static too.(·½οψÿÿÿÿ8ξαΙ,
+Rsquid:S1068"1Remove this unused "okHttpBuilder" private field.(«ο³•ψÿÿÿÿ8ΛΊιΙ,

@@ -1,0 +1,5 @@
+
+^squid:UselessImportCheck"0Remove this unused import 'retrofit2.http.Part'.(Ì—’Áÿÿÿÿÿ8ØØ»É,
+[squid:UselessImportCheck"2Remove this unused import 'okhttp3.MultipartBody'.(ÕœˆŒ8Ù®½É,
+‘squid:UselessImportCheck"cRemove this unused import 'com.example.roma.patientapp.data.model.uploadimage.UploadImageResponse'.(·ğÕğÿÿÿÿÿ8«ñºÉ,
+csquid:UselessImportCheck"5Remove this unused import 'retrofit2.http.Multipart'.(ù«÷åşÿÿÿÿ8¿Ø¹É,

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp76h"
+    android:paddingBottom="@dimen/dp6h"
+    android:paddingTop="@dimen/dp6h">
+
+    <ImageView
+        android:id="@+id/photo_iv"
+        android:layout_width="@dimen/dp32w"
+        android:layout_height="@dimen/dp32h"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dp10w"
+        android:src="@drawable/girl" />
+
+    <View
+        android:layout_width="@dimen/dp2w"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp14w"
+        android:background="@drawable/separator_vert" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp8w"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5w"
+            android:text="27 March (Today) | 8:30 PM" />
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp5h" />
+
+        <TextView
+            android:id="@+id/speciality_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp5h" />
+    </LinearLayout>
+
+</LinearLayout>
