@@ -56,6 +56,11 @@ public class LocalRepositoryImpl implements LocalRepository {
     }
 
     @Override
+    public void clearToken() {
+        preferencesManager.clearToken();
+    }
+
+    @Override
     public SignInResponse getSignInResponse() {
         SignInResponse response = preferencesManager.getObject(PrefrenceConstants.SIGNIN_RESPONSE, SignInResponse.class);
         return response != null ? response : null;

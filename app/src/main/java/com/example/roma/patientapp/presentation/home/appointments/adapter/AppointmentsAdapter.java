@@ -40,12 +40,14 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return list != null ? list.size() : 0;
     }
 
     public void updateData(ArrayList<AppointmentRequestDetailModel> data) {
         list.clear();
-        list.addAll(data);
+        if (data != null) {
+            list.addAll(data);
+        }
         notifyDataSetChanged();
     }
 

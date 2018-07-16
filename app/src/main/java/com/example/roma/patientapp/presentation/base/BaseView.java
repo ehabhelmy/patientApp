@@ -5,4 +5,6 @@ package com.example.roma.patientapp.presentation.base;
  */
 
 public interface BaseView {
+
+    void showError(String msg);
 }

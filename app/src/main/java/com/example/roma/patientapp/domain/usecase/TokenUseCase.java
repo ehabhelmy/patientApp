@@ -26,4 +26,8 @@ public class TokenUseCase extends UseCase<BaseModel> {
     public String getToken(){
         return dataRepository.getToken();
     }
+
+    public void clearToken(){
+        dataRepository.clearToken();
+    }
 }

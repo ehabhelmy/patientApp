@@ -3,8 +3,10 @@ package com.example.roma.patientapp.domain.usecase;
 import com.example.roma.patientapp.data.DataRepository;
 import com.example.roma.patientapp.data.model.edit_profile.UpdateInfoModel;
 import com.example.roma.patientapp.data.model.login.SignInResponse;
+import com.example.roma.patientapp.data.model.login.UserInfo;
 import com.example.roma.patientapp.data.model.regions.RegionResponse;
 import com.example.roma.patientapp.domain.usecase.base.UseCase;
+import com.example.roma.patientapp.utils.constants.Constants;
 
 import java.util.Map;
 
@@ -25,8 +27,23 @@ public class EditProfileUseCase extends UseCase<UpdateInfoModel> {
 
     @Override
     protected Observable<UpdateInfoModel> buildUseCaseObservable(Map<String, Object> parameters) {
-        return null;
+        String fname = (String) parameters.get(Constants.F_NAME);
+        String lName = (String) parameters.get(Constants.L_NAME);
+        String mobile = (String) parameters.get(Constants.M_NUMBER);
+        String email = (String) parameters.get(Constants.EMAIL);
+        String region = (String) parameters.get(Constants.REGION);
+        SignInResponse signInResponse = new SignInResponse();
+        UserInfo userInfo = new UserInfo();
+        userInfo.setFirstName(fname);
+        userInfo.setLastName(lName);
+        userInfo.setEmail(email);
+        userInfo.setMobileNumber(mobile);
+        userInfo.setRegion(region);
+        signInResponse.setUserInfo(userInfo);
+        dataRepository.saveSignInResponse(signInResponse);
+        return dataRepository.updateInfo(parameters);
     }
+
 
     public SignInResponse getSignInResponse() {
         return dataRepository.getSignInResponse();

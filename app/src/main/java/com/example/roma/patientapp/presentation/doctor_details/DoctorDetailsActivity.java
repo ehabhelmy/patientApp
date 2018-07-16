@@ -1,5 +1,7 @@
 package com.example.roma.patientapp.presentation.doctor_details;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
@@ -96,5 +98,18 @@ public class DoctorDetailsActivity extends BaseActivity implements DoctorDetails
             finish();
         }
         return true;
+    }
+
+    @OnClick(R.id.loc_iv)
+    void openMaps(){
+        Uri uri = Uri.parse("google.navigation:q=" + doctorDetailsModel.getLocation().getLatitude() + "," + doctorDetailsModel.getLocation().getLongitude() + "&mode=d");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        intent.setPackage("com.google.android.apps.maps");
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        navigationManager.navigateToHomeActivity();
     }
 }

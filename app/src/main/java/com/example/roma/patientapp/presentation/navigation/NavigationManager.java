@@ -27,14 +27,14 @@ public class NavigationManager extends BaseNavigationManager {
 
     @Override
     public void navigateToUploadImageFragment() {
-        replaceFragment(R.id.home_container, new UploadImageFragment(), false);
+        replaceFragment(R.id.home_container, new UploadImageFragment(), true);
     }
 
     @Override
     public void navigateToHomeActivity() {
-        Intent intent = new Intent(context, HomeActivity.class);
+        Intent intent = new Intent(getCurrentActivity(), HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        getCurrentActivity().startActivity(intent);
     }
 
     @Override
@@ -64,15 +64,15 @@ public class NavigationManager extends BaseNavigationManager {
 
     @Override
     public void navigateDoctorDetailsActivity(Doctor doctor) {
-        Intent intent = new Intent(context, DoctorDetailsActivity.class);
+        Intent intent = new Intent(getCurrentActivity(), DoctorDetailsActivity.class);
         intent.putExtra(Constants.DOCTOR, doctor);
-        context.startActivity(intent);
+        getCurrentActivity().startActivity(intent);
     }
 
     @Override
     public void navigateToBookAppointmentActivity(DoctorDetailsModel doctor) {
-        Intent intent = new Intent(context, AppointmentBookedActivity.class);
+        Intent intent = new Intent(getCurrentActivity(), AppointmentBookedActivity.class);
         intent.putExtra(Constants.DOCTOR, doctor);
-        context.startActivity(intent);
+        getCurrentActivity().startActivity(intent);
     }
 }

@@ -33,6 +33,9 @@ public class ChangePasswordPresenter extends BasePresenter<ChangePasswordFragmen
             @Override
             public void onNext(ChangePasswordResponse changePasswordResponse) {
                 super.onNext(changePasswordResponse);
+                if (isViewAttached() && changePasswordResponse.getId() == 0) {
+                    getView().showSuccess();
+                }
             }
 
             @Override

@@ -6,6 +6,7 @@ import com.example.roma.patientapp.data.model.appointment_booked.AppointmentBook
 import com.example.roma.patientapp.data.model.appointments.RequestStatusResponse;
 import com.example.roma.patientapp.data.model.doctor_details.DoctorDetailsResponse;
 import com.example.roma.patientapp.data.model.edit_profile.ChangePasswordResponse;
+import com.example.roma.patientapp.data.model.edit_profile.UpdateInfoModel;
 import com.example.roma.patientapp.data.model.login.SignInResponse;
 import com.example.roma.patientapp.data.model.regions.RegionResponse;
 import com.example.roma.patientapp.data.model.search_doctor.SearchDoctorResponse;
@@ -104,6 +105,11 @@ public class DataRepositoryImpl implements DataRepository {
     }
 
     @Override
+    public void clearToken() {
+        localRepository.clearToken();
+    }
+
+    @Override
     public SignInResponse getSignInResponse() {
         return localRepository.getSignInResponse();
     }
@@ -145,5 +151,11 @@ public class DataRepositoryImpl implements DataRepository {
     public Observable<Response<ResponseBody>> downloadImage(Map<String, Object> parameters) {
         parameters.put(Constants.TOKEN, getToken());
         return remoteRepository.downloadImage(parameters);
+    }
+
+    @Override
+    public Observable<UpdateInfoModel> updateInfo(Map<String, Object> parameters) {
+        parameters.put(Constants.TOKEN, getToken());
+        return remoteRepository.updateInfo(parameters);
     }
 }

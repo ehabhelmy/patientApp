@@ -10,6 +10,7 @@ public interface ChangePasswordContract {
 
     interface View extends BaseView {
 
+        void showSuccess();
     }
 
     interface Presenter {

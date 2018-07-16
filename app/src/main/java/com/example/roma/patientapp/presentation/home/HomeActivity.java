@@ -1,5 +1,8 @@
 package com.example.roma.patientapp.presentation.home;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,14 +13,18 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.roma.patientapp.PatientApplication;
 import com.example.roma.patientapp.R;
 import com.example.roma.patientapp.data.model.search_doctor.Doctor;
 import com.example.roma.patientapp.presentation.base.BaseActivity;
 import com.example.roma.patientapp.presentation.home.search_doctor.SearchDoctorAdapter;
+import com.example.roma.patientapp.presentation.login.SignInActivity;
 
 import java.util.ArrayList;
 
@@ -28,6 +35,7 @@ import butterknife.OnClick;
 
 public class HomeActivity extends BaseActivity implements HomeContract.View, SearchDoctorAdapter.OnItemClickListener {
 
+    private static final String ACTIVITY_NAVIGATED = "asd";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.nav_drawer)
@@ -38,7 +46,11 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Sea
     EditText searchEditText;
     @BindView(R.id.search_doc_rv)
     RecyclerView doctorRecyclarView;
+    @BindView(R.id.search_bar)
+    LinearLayout searchBar;
 
+    private boolean showen = true;
+    private static int stackedLayers = 0;
     @Inject
     HomePresenter homePresenter;
 
@@ -54,6 +66,16 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Sea
     protected void initView() {
         super.initView();
         setSupportActionBar(toolbar);
+        searchEditText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    homePresenter.searchDoctor(searchEditText.getText().toString().trim());
+                    return true;
+                }
+                return false;
+            }
+        });
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         doctorRecyclarView.setLayoutManager(mLayoutManager);
         doctorRecyclarView.setItemAnimator(new DefaultItemAnimator());
@@ -97,20 +119,33 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Sea
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 drawerLayout.closeDrawers();
                 switch (item.getItemId()) {
+                    case R.id.home_item:
+                        homePresenter.navigateToHomeFragment();
+                        showSearchBar();
+                        stackedLayers = 0;
+                        break;
                     case R.id.profile_item:
                         homePresenter.navigateToEditProfileFragment();
+                        stackedLayers++;
+                        hideSearchBar();
                         break;
                     case R.id.appoint_item:
                         homePresenter.navigateToAppointmentsFragment();
+                        stackedLayers++;
+                        hideSearchBar();
                         break;
                     case R.id.setting_item:
                         homePresenter.navigateToSettingsFragment();
+                        stackedLayers++;
+                        hideSearchBar();
                         break;
                     case R.id.logout_item:
-                        homePresenter.navigateToLogOutFragment();
+                        homePresenter.handleUserLogout();
                         break;
                     case R.id.about_item:
                         homePresenter.navigateToAboutFragment();
+                        stackedLayers++;
+                        hideSearchBar();
                         break;
                 }
                 return false;
@@ -143,7 +178,17 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Sea
 
     @Override
     public void onBackPressed() {
+        stackedLayers --;
+        if(stackedLayers == 0)
+            showSearchBar();
         super.onBackPressed();
-        finish();
+    }
+
+    private void showSearchBar() {
+        searchBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideSearchBar() {
+        searchBar.setVisibility(View.GONE);
     }
 }

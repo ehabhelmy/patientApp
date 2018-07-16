@@ -22,4 +22,9 @@ public class Constants {
     public static final String REQUEST_STATUS_CANCELLED = "2";
     public static final String LOCATION = "location";
     public static final String FILE = "file";
+    public static final String F_NAME = "firstName";
+    public static final String L_NAME = "lastName";
+    public static final String M_NUMBER = "mobile_number";
+    public static final String EMAIL = "email";
+    public static final String REGION = "region";
 }

@@ -1,9 +1,15 @@
 package com.example.roma.patientapp.presentation.edit_profile.update_info;
 
+import com.example.roma.patientapp.data.model.edit_profile.UpdateInfoModel;
 import com.example.roma.patientapp.data.model.login.SignInResponse;
 import com.example.roma.patientapp.data.model.regions.RegionResponse;
 import com.example.roma.patientapp.domain.usecase.EditProfileUseCase;
+import com.example.roma.patientapp.domain.usecase.base.DefaultObserver;
 import com.example.roma.patientapp.presentation.base.BasePresenter;
+import com.example.roma.patientapp.utils.constants.Constants;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -35,4 +41,36 @@ public class EditProfilePresenter extends BasePresenter<EditProfileFragment> imp
             getView().loadSpinner(response);
         }
     }
+
+    @Override
+    public void updateInfo(String firstName, String lastName, String mobile, String email,String region) {
+        Map<String,Object> params = new HashMap<>();
+        params.put(Constants.F_NAME,firstName);
+        params.put(Constants.L_NAME,lastName);
+        params.put(Constants.M_NUMBER,mobile);
+        params.put(Constants.EMAIL,email);
+        params.put(Constants.REGION,region);
+        editProfileUseCase.execute(params,new DefaultObserver<UpdateInfoModel>(){
+            @Override
+            public void onNext(UpdateInfoModel updateInfoModel) {
+                super.onNext(updateInfoModel);
+                if (isViewAttached()){
+                    if (updateInfoModel.getId() == 0) {
+                        navigationManager.navigateToUploadImageFragment();
+                    }else {
+                        getView().showError(updateInfoModel.getDescription());
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                if (isViewAttached()){
+                    getView().showError("Server Error");
+                }
+            }
+        });
+    }
+
 }

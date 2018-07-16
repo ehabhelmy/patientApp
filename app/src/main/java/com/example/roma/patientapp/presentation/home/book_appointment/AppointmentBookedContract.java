@@ -10,6 +10,7 @@ public interface AppointmentBookedContract {
 
     interface View extends BaseView {
 
+        void showSuccess();
     }
 
     interface Presenter {

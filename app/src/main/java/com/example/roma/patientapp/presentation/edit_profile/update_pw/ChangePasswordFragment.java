@@ -1,6 +1,7 @@
 package com.example.roma.patientapp.presentation.edit_profile.update_pw;
 
 
+import android.support.v7.app.AlertDialog;
 import android.widget.EditText;
 
 import com.example.roma.patientapp.PatientApplication;
@@ -47,7 +48,14 @@ public class ChangePasswordFragment extends BaseFragment implements ChangePasswo
     }
 
     private Boolean validatePW(String newPw, String confirmPw) {
-        return newPw.equals(confirmPw) ? true : false;
+        return newPw.equals(confirmPw);
     }
 
+    @Override
+    public void showSuccess() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(getString(R.string.success))
+                .setMessage(getString(R.string.pw_changed))
+                .show();
+    }
 }

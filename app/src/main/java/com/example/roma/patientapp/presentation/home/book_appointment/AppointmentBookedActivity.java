@@ -89,6 +89,14 @@ public class AppointmentBookedActivity extends BaseActivity implements Appointme
         return true;
     }
 
+    @Override
+    public void showSuccess() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.success))
+                .setMessage("Booked Successfully")
+                .show();
+    }
+
     public interface OnItemClickListener {
         void onItemClick(DoctorAppointment appointment);
     }

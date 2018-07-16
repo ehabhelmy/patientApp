@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/home_item"
+        android:title="@string/nav_home_item"
+        android:icon="@drawable/ic_drawer_profile" />
+    <item
         android:id="@+id/profile_item"
         android:title="@string/nav_profile_item"
         android:icon="@drawable/ic_drawer_profile" />

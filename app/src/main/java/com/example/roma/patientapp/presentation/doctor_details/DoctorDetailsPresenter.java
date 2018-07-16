@@ -40,7 +40,23 @@ public class DoctorDetailsPresenter extends BasePresenter<DoctorDetailsActivity>
             @Override
             public void onNext(DoctorDetailsResponse doctorDetailsResponse) {
                 super.onNext(doctorDetailsResponse);
-                getView().loadData(new DoctorDetailsAdapter().getDoctorDetailModel(searchedDoctor, doctorDetailsResponse, specialities));
+                if (doctorDetailsResponse.getId()  == 0) {
+                    if (isViewAttached()) {
+                        getView().loadData(new DoctorDetailsAdapter().getDoctorDetailModel(searchedDoctor, doctorDetailsResponse, specialities));
+                    }
+                }else {
+                    if (isViewAttached()){
+                        getView().showError(doctorDetailsResponse.getDescription());
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                if (isViewAttached()){
+                    getView().showError("Server Error");
+                }
             }
         });
     }

@@ -167,6 +167,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12 Eldokky Square"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/loc_iv"
             android:textColor="@color/color_doc_details_location_tx"
             android:textSize="@dimen/sp14" />
 
@@ -174,8 +176,8 @@
             android:id="@+id/loc_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/dp44w"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp44w"
             android:src="@drawable/ic_location" />
     </RelativeLayout>
 
