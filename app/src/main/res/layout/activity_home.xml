@@ -59,7 +59,7 @@
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
                             android:cursorVisible="true"
-                            android:hint="search .."
+                            android:hint="@string/search_hint"
                             android:inputType="text"
                             android:imeOptions="actionSearch"
                             android:textColor="#61000000" />

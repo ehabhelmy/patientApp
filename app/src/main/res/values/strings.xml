@@ -42,5 +42,6 @@
     <string name="success">Success</string>
     <string name="pw_changed">Password changed successfully</string>
     <string name="failure">Failure</string>
+    <string name="search_hint">search ..</string>
 
 </resources>
