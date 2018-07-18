@@ -55,9 +55,4 @@ public class SignInActivity extends BaseActivity implements SignInContract.View 
         signInPresenter.setView(this);
     }
 
-    @Override
-    public void showError(String msg) {
-
-    }
-
 }

@@ -38,9 +38,22 @@ public class AppointmentBookedPresenter extends BasePresenter<AppointmentBookedA
             @Override
             public void onNext(AppointmentBookedResponse appointmentBookedResponse) {
                 super.onNext(appointmentBookedResponse);
-                if (appointmentBookedResponse.getId() == REQUEST_SUCCESS) {
-                    appointmentBookedUseCase.saveAppointmentRequestDetail(new AppointmentRequestDetailModel(appointmentBookedResponse.getRequestId(),
-                            model.getTime(), model.getLastName(), model.getSpeciality()));
+                if (isViewAttached()) {
+                    if (appointmentBookedResponse.getId() == REQUEST_SUCCESS) {
+                        getView().showSuccess();
+                        appointmentBookedUseCase.saveAppointmentRequestDetail(new AppointmentRequestDetailModel(appointmentBookedResponse.getRequestId(),
+                                model.getTime(), model.getLastName(), model.getSpeciality()));
+                    } else {
+                        getView().showError(appointmentBookedResponse.getDescription());
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                if (isViewAttached()){
+                    getView().showError("Server Error");
                 }
             }
         });

@@ -4,6 +4,7 @@ import com.example.roma.patientapp.data.model.appointment_booked.AppointmentBook
 import com.example.roma.patientapp.data.model.appointments.RequestStatusResponse;
 import com.example.roma.patientapp.data.model.doctor_details.DoctorDetailsResponse;
 import com.example.roma.patientapp.data.model.edit_profile.ChangePasswordResponse;
+import com.example.roma.patientapp.data.model.edit_profile.UpdateInfoModel;
 import com.example.roma.patientapp.data.model.login.SignInResponse;
 import com.example.roma.patientapp.data.model.regions.RegionResponse;
 import com.example.roma.patientapp.data.model.search_doctor.SearchDoctorRequest;
@@ -21,6 +22,7 @@ import com.example.roma.patientapp.data.remote.service.RequestStatusService;
 import com.example.roma.patientapp.data.remote.service.SearchDoctorService;
 import com.example.roma.patientapp.data.remote.service.SignInService;
 import com.example.roma.patientapp.data.remote.service.UpdateImageService;
+import com.example.roma.patientapp.data.remote.service.UpdateInfoService;
 import com.example.roma.patientapp.data.remote.service.UploadImageService;
 import com.example.roma.patientapp.utils.constants.Constants;
 
@@ -120,5 +122,11 @@ public class RemoteRepositoryImpl implements RemoteRepository {
     public Observable<Response<ResponseBody>> downloadImage(Map<String, Object> parameters) {
         DownloadImageService service = this.serviceGenerator.createService(DownloadImageService.class);
         return service.downloadImage((String) parameters.get(Constants.TOKEN),(String) parameters.get(Constants.LOCATION));
+    }
+
+    @Override
+    public Observable<UpdateInfoModel> updateInfo(Map<String, Object> parameters) {
+        UpdateInfoService service = this.serviceGenerator.createService(UpdateInfoService.class);
+        return service.updateInfo((String) parameters.get(Constants.TOKEN),(String) parameters.get(Constants.F_NAME),(String) parameters.get(Constants.L_NAME),(String) parameters.get(Constants.M_NUMBER),(String) parameters.get(Constants.EMAIL), (String) parameters.get(Constants.REGION));
     }
 }

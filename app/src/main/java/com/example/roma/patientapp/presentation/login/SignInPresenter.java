@@ -39,17 +39,17 @@ public class SignInPresenter extends BasePresenter<SignInActivity> implements Si
                     signInUseCase.saveSignInResponse(response);
                     navigationManager.navigateToHomeActivity();
                 } else {
-                    getView().showError("");
+                    getView().showError(response.getDescription());
                 }
             }
 
             @Override
             public void onError(Throwable e) {
                 super.onError(e);
-                getView().showError("");
+                if (isViewAttached()){
+                    getView().showError("Server Error");
+                }
             }
-
-
         };
 
         signInUseCase.execute(parameters, observer);

@@ -41,7 +41,7 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
 
     @Override
     public int getItemCount() {
-        return appointments.size();
+        return appointments != null ? appointments.size() : 0;
     }
 
     class AppointmentViewHolder extends RecyclerView.ViewHolder {

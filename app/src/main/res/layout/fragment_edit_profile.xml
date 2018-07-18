@@ -45,22 +45,22 @@
                     app:backgroundTint="@color/color_change_pw_hint" />
 
                 <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/name_et"
+                    android:id="@+id/first_name_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5h"
-                    android:hint="@string/change_pw_name_hint"
+                    android:hint="@string/first_name"
                     android:textColor="@color/color_change_pw_et"
                     android:textColorHint="@color/color_change_pw_hint"
                     android:textSize="@dimen/sp16"
                     app:backgroundTint="@color/color_change_pw_hint" />
 
                 <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/date_et"
+                    android:id="@+id/last_name_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5h"
-                    android:hint="@string/change_pw_date_of_birth_hint"
+                    android:hint="@string/last_name"
                     android:textColor="@color/color_change_pw_et"
                     android:textColorHint="@color/color_change_pw_hint"
                     android:textSize="@dimen/sp16"
@@ -78,6 +78,16 @@
                     app:backgroundTint="@color/color_change_pw_hint" />
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/email_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5h"
+                    android:hint="@string/change_pw_email_hint"
+                    android:textColor="@color/color_change_pw_et"
+                    android:textColorHint="@color/color_change_pw_hint"
+                    android:textSize="@dimen/sp16"
+                    app:backgroundTint="@color/color_change_pw_hint" />
+                <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/city_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -89,16 +99,6 @@
                     android:textSize="@dimen/sp16"
                     app:backgroundTint="@color/color_change_pw_hint" />
 
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/email_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp5h"
-                    android:hint="@string/change_pw_email_hint"
-                    android:textColor="@color/color_change_pw_et"
-                    android:textColorHint="@color/color_change_pw_hint"
-                    android:textSize="@dimen/sp16"
-                    app:backgroundTint="@color/color_change_pw_hint" />
             </LinearLayout>
         </ScrollView>
 

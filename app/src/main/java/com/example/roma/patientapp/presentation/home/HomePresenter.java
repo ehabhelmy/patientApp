@@ -68,12 +68,23 @@ public class HomePresenter extends BasePresenter<HomeActivity> implements HomeCo
             @Override
             public void onNext(SearchDoctorResponse searchDoctorResponse) {
                 super.onNext(searchDoctorResponse);
-                getView().loadData((ArrayList<Doctor>) searchDoctorResponse.getDoctors());
+                if (searchDoctorResponse.getId() == 0) {
+                    if (isViewAttached()) {
+                        getView().loadData((ArrayList<Doctor>) searchDoctorResponse.getDoctors());
+                    }
+                }else {
+                    if (isViewAttached()){
+                        getView().showError(searchDoctorResponse.getDescription());
+                    }
+                }
             }
 
             @Override
             public void onError(Throwable e) {
                 super.onError(e);
+                if (isViewAttached()){
+                    getView().showError("Server Error");
+                }
             }
         });
     }

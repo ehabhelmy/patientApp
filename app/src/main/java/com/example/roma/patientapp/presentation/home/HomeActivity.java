@@ -10,7 +10,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 
 import com.example.roma.patientapp.PatientApplication;
@@ -28,6 +30,7 @@ import butterknife.OnClick;
 
 public class HomeActivity extends BaseActivity implements HomeContract.View, SearchDoctorAdapter.OnItemClickListener {
 
+    private static final String ACTIVITY_NAVIGATED = "asd";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.nav_drawer)
@@ -39,6 +42,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Sea
     @BindView(R.id.search_doc_rv)
     RecyclerView doctorRecyclarView;
 
+    private boolean showen = true;
     @Inject
     HomePresenter homePresenter;
 
@@ -54,6 +58,16 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Sea
     protected void initView() {
         super.initView();
         setSupportActionBar(toolbar);
+        searchEditText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    homePresenter.searchDoctor(searchEditText.getText().toString().trim());
+                    return true;
+                }
+                return false;
+            }
+        });
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         doctorRecyclarView.setLayoutManager(mLayoutManager);
         doctorRecyclarView.setItemAnimator(new DefaultItemAnimator());

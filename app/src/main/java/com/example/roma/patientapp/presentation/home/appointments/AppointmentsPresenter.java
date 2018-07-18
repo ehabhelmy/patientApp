@@ -68,8 +68,20 @@ public class AppointmentsPresenter extends BasePresenter<AppointmentsFragment> i
                         default:
                             break;
                     }
+                }else {
+                    if (isViewAttached()){
+                        getView().showError(requestStatusResponse.getDescription());
+                    }
                 }
                 isServiceFinished();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                if (isViewAttached()){
+                    getView().showError("Server Error");
+                }
             }
         });
     }

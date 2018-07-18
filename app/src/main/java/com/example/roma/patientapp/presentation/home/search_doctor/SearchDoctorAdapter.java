@@ -53,12 +53,14 @@ public class SearchDoctorAdapter extends RecyclerView.Adapter<SearchDoctorAdapte
 
     @Override
     public int getItemCount() {
-        return doctors.size();
+        return doctors != null ? doctors.size() : 0;
     }
 
     public void updateData(ArrayList<Doctor> items) {
         doctors.clear();
-        doctors.addAll(items);
+        if (items != null) {
+            doctors.addAll(items);
+        }
         notifyDataSetChanged();
     }
 

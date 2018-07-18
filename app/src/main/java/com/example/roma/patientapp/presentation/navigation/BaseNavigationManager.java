@@ -26,12 +26,9 @@ public abstract class BaseNavigationManager {
 
     protected WeakReference<BaseActivity> currentActivity;
 
-    protected static Context context;
-
 
     public static BaseNavigationManager getInstance() {
         if (navigationManager == null) {
-            context = PatientApplication.getContext();
             navigationManager = new NavigationManager();
         }
         return navigationManager;
@@ -46,14 +43,14 @@ public abstract class BaseNavigationManager {
     }
 
     public void setCurrentActivity(BaseActivity currentActivity) {
-        this.currentActivity = new WeakReference<BaseActivity>(currentActivity);
+        this.currentActivity = new WeakReference<>(currentActivity);
     }
 
     public void replaceFragment(int containerViewId, Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(containerViewId, fragment);
         if (addToBackStack) transaction.addToBackStack(null);
-        transaction.commitAllowingStateLoss();
+        transaction.commit();
     }
 
 

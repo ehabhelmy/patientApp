@@ -20,5 +20,8 @@ public interface EditProfileContract {
         void getSignInResponse();
 
         void getAllRegionResponse();
+
+        void updateInfo(String firstName,String lastName,String mobile,String email,String region);
+
     }
 }

@@ -29,8 +29,7 @@
             android:id="@+id/time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp5w"
-            android:text="27 March (Today) | 8:30 PM" />
+            android:layout_marginLeft="@dimen/dp5w" />
 
         <TextView
             android:id="@+id/name_tv"

@@ -2,8 +2,10 @@ package com.example.roma.patientapp.presentation.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.roma.patientapp.R;
 import com.example.roma.patientapp.presentation.navigation.BaseNavigationManager;
 
 import butterknife.ButterKnife;
@@ -19,19 +21,32 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected BasePresenter presenter;
     protected BaseNavigationManager navigationManager;
 
+
+    @Override
+    public void showError(String msg) {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.failure))
+                .setMessage(msg)
+                .show();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(this.getLayoutId());
         navigationManager = BaseNavigationManager.getInstance();
-        navigationManager.getInstance().setCurrentActivity(this);
-        navigationManager.getInstance().setFragmentManager(getSupportFragmentManager());
         bindViews();
         initView();
         initializeDagger();
         initializePresenter();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        navigationManager.getInstance().setCurrentActivity(this);
+        navigationManager.getInstance().setFragmentManager(getSupportFragmentManager());
+    }
 
     @Override
     protected void onDestroy() {

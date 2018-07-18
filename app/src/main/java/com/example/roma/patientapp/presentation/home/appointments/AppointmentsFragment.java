@@ -1,10 +1,12 @@
 package com.example.roma.patientapp.presentation.home.appointments;
 
 
+import android.content.res.ColorStateList;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.example.roma.patientapp.PatientApplication;
 import com.example.roma.patientapp.R;
@@ -23,6 +25,17 @@ public class AppointmentsFragment extends BaseFragment implements AppointmentsCo
 
     @BindView(R.id.appointments_rv)
     RecyclerView recyclerView;
+    @BindView(R.id.all_requests_tv)
+    TextView allRequestsTv;
+    @BindView(R.id.pending_requests_tv)
+    TextView pendingRequestsTv;
+    @BindView(R.id.approved_requests_tv)
+    TextView approvedRequestsTv;
+    @BindView(R.id.cancelled_requests_tv)
+    TextView cancelledRequestsTv;
+
+    private ColorStateList oldColors;
+
 
     @Inject
     AppointmentsPresenter appointmentsPresenter;
@@ -53,12 +66,15 @@ public class AppointmentsFragment extends BaseFragment implements AppointmentsCo
     @Override
     protected void initView() {
         super.initView();
+        oldColors =  approvedRequestsTv.getTextColors(); //save original colors
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(),
                 DividerItemDecoration.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        adapter = new AppointmentsAdapter();
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -75,30 +91,42 @@ public class AppointmentsFragment extends BaseFragment implements AppointmentsCo
     }
 
     void renderRecyclarViewData(ArrayList<AppointmentRequestDetailModel> data) {
-        if (adapter == null) {
-            adapter = new AppointmentsAdapter();
-            recyclerView.setAdapter(adapter);
-            adapter.updateData(data);
-        }
+        adapter.updateData(data);
     }
 
     @OnClick(R.id.all_requests_tv)
     void getAllRequests() {
+        allRequestsTv.setTextColor(getResources().getColor(R.color.colorPrimary));
+        pendingRequestsTv.setTextColor(oldColors);
+        approvedRequestsTv.setTextColor(oldColors);
+        cancelledRequestsTv.setTextColor(oldColors);
         adapter.updateData(allRequests);
     }
 
     @OnClick(R.id.pending_requests_tv)
     void getPendingRequests() {
+        allRequestsTv.setTextColor(oldColors);
+        pendingRequestsTv.setTextColor(getResources().getColor(R.color.colorPrimary));
+        approvedRequestsTv.setTextColor(oldColors);
+        cancelledRequestsTv.setTextColor(oldColors);
         adapter.updateData(pendingRequests);
     }
 
     @OnClick(R.id.approved_requests_tv)
     void getApprovedRequests() {
+        allRequestsTv.setTextColor(oldColors);
+        pendingRequestsTv.setTextColor(oldColors);
+        approvedRequestsTv.setTextColor(getResources().getColor(R.color.colorPrimary));
+        cancelledRequestsTv.setTextColor(oldColors);
         adapter.updateData(approvedRequests);
     }
 
     @OnClick(R.id.cancelled_requests_tv)
     void getCancelledRequests() {
+        allRequestsTv.setTextColor(oldColors);
+        pendingRequestsTv.setTextColor(oldColors);
+        approvedRequestsTv.setTextColor(oldColors);
+        cancelledRequestsTv.setTextColor(oldColors);
         adapter.updateData(cancelledRequests);
     }
 }

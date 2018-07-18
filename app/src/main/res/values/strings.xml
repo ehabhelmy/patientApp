@@ -15,6 +15,8 @@
     <string name="change_pw_next_btn">Next</string>
     <string name="change_pw_skip_btn">Skip</string>
     <string name="change_pw_upload_photo_tv">Upload Photo</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
 
     <!-- navigation menu item -->
     <string name="nav_profile_item">Edit Profile</string>
@@ -36,5 +38,8 @@
     <string name="confirm_password_hint">Confirm Password</string>
     <string name="change_password_btn">Change Password</string>
     <string name="toolbar_title">Mowafer</string>
+    <string name="success">Success</string>
+    <string name="pw_changed">Password changed successfully</string>
+    <string name="failure">Failure</string>
 
 </resources>

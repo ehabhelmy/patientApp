@@ -41,4 +41,9 @@ public class UploadImageFragment extends BaseFragment {
     public void navigateToHomeActivity() {
         navigationManager.navigateToHomeActivity();
     }
+
+    @OnClick(R.id.skip_tv)
+    public void skip(){
+        navigationManager.navigateToHomeActivity();
+    }
 }
