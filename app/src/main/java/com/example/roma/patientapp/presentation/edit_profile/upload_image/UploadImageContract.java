@@ -1,5 +1,7 @@
 package com.example.roma.patientapp.presentation.edit_profile.upload_image;
 
+import android.net.Uri;
+
 import com.example.roma.patientapp.data.model.login.SignInResponse;
 import com.example.roma.patientapp.data.model.regions.RegionResponse;
 import com.example.roma.patientapp.presentation.base.BaseView;
@@ -17,5 +19,7 @@ public interface UploadImageContract {
         void getSignInResponse();
 
         void getAllRegionResponse();
+
+        void uploadImage(Uri image);
     }
 }

@@ -19,6 +19,7 @@
     <string name="last_name">Last Name</string>
 
     <!-- navigation menu item -->
+    <string name="nav_home_item">Home</string>
     <string name="nav_profile_item">Edit Profile</string>
     <string name="nav_appointments_item">Appointments</string>
     <string name="nav_settings_item">Settings</string>
@@ -41,5 +42,6 @@
     <string name="success">Success</string>
     <string name="pw_changed">Password changed successfully</string>
     <string name="failure">Failure</string>
+    <string name="search_hint">search ..</string>
 
 </resources>

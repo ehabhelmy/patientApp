@@ -27,4 +27,6 @@ public interface LocalRepository {
     void saveAppointmentRequestDetail(AppointmentRequestDetailModel requestId);
 
     List<AppointmentRequestDetailModel> getAppointmentsRequestsDetails();
+
+    void clearToken();
 }

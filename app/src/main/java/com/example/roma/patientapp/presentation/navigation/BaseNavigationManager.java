@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.example.roma.patientapp.PatientApplication;
 import com.example.roma.patientapp.data.model.search_doctor.Doctor;
+import com.example.roma.patientapp.data.model.specialities.Speciality;
 import com.example.roma.patientapp.presentation.base.BaseActivity;
 import com.example.roma.patientapp.presentation.doctor_details.adapter.DoctorDetailsModel;
 import com.example.roma.patientapp.utils.StringUtils;
@@ -85,4 +86,6 @@ public abstract class BaseNavigationManager {
     public abstract void navigateDoctorDetailsActivity(Doctor doctor);
 
     public abstract void navigateToBookAppointmentActivity(DoctorDetailsModel doctor);
+
+    public abstract void navigateToSearchFragment(Speciality speciality);
 }

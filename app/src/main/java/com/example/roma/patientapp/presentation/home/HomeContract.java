@@ -1,8 +1,12 @@
 package com.example.roma.patientapp.presentation.home;
 
 import com.example.roma.patientapp.data.model.search_doctor.Doctor;
+import com.example.roma.patientapp.data.model.specialities.SpecialitiesResponse;
+import com.example.roma.patientapp.data.model.specialities.Speciality;
+import com.example.roma.patientapp.presentation.base.BaseView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Romisaa on 6/15/2018.
@@ -10,14 +14,17 @@ import java.util.ArrayList;
 
 public interface HomeContract {
 
-    interface View {
-        void loadData(ArrayList<Doctor> doctors);
+    interface View extends BaseView{
+        void loadData(List<Speciality> specialities);
+        void navigateToAuth();
     }
 
     interface Presenter {
         void getAllSpecialities();
 
         void getALlRegions();
+
+        void navigateToSearchFragment(Speciality speciality);
 
         void navigateToEditProfileFragment();
 
@@ -28,7 +35,5 @@ public interface HomeContract {
         void navigateToLogOutFragment();
 
         void navigateToAboutFragment();
-
-        void searchDoctor(String value);
-    }
+        }
 }

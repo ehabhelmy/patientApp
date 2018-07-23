@@ -40,6 +40,7 @@
                         android:src="@drawable/ic_menu_white" />
 
                     <LinearLayout
+                        android:id="@+id/search_bar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/dp5h"
@@ -50,14 +51,17 @@
                             android:layout_width="@dimen/dp26w"
                             android:layout_height="@dimen/dp26h"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_arrow_back" />
+                            android:src="@drawable/ic_clear_black_24dp" />
 
                         <EditText
                             android:id="@+id/search_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
-                            android:cursorVisible="false"
+                            android:cursorVisible="true"
+                            android:hint="@string/search_hint"
+                            android:inputType="text"
+                            android:imeOptions="actionSearch"
                             android:textColor="#61000000" />
                     </LinearLayout>
                 </LinearLayout>

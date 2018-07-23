@@ -1,9 +1,11 @@
 package com.example.roma.patientapp.presentation.navigation;
 
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.example.roma.patientapp.R;
 import com.example.roma.patientapp.data.model.search_doctor.Doctor;
+import com.example.roma.patientapp.data.model.specialities.Speciality;
 import com.example.roma.patientapp.presentation.doctor_details.DoctorDetailsActivity;
 import com.example.roma.patientapp.presentation.doctor_details.adapter.DoctorDetailsModel;
 import com.example.roma.patientapp.presentation.edit_profile.update_info.EditProfileFragment;
@@ -12,6 +14,7 @@ import com.example.roma.patientapp.presentation.edit_profile.upload_image.Upload
 import com.example.roma.patientapp.presentation.home.HomeActivity;
 import com.example.roma.patientapp.presentation.home.appointments.AppointmentsFragment;
 import com.example.roma.patientapp.presentation.home.book_appointment.AppointmentBookedActivity;
+import com.example.roma.patientapp.presentation.home.search_doctor.SearchDoctorFragment;
 import com.example.roma.patientapp.utils.constants.Constants;
 
 /**
@@ -74,5 +77,14 @@ public class NavigationManager extends BaseNavigationManager {
         Intent intent = new Intent(getCurrentActivity(), AppointmentBookedActivity.class);
         intent.putExtra(Constants.DOCTOR, doctor);
         getCurrentActivity().startActivity(intent);
+    }
+
+    @Override
+    public void navigateToSearchFragment(Speciality speciality) {
+        SearchDoctorFragment searchDoctorFragment = new SearchDoctorFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(SearchDoctorFragment.SPECIALITY_ID,speciality.getId());
+        searchDoctorFragment.setArguments(bundle);
+        replaceFragment(R.id.home_container, searchDoctorFragment, true);
     }
 }

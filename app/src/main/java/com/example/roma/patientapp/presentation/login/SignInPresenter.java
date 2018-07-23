@@ -38,6 +38,11 @@ public class SignInPresenter extends BasePresenter<SignInActivity> implements Si
                 if (response.getId() == Constants.REQUEST_SUCCESS) {
                     signInUseCase.saveSignInResponse(response);
                     navigationManager.navigateToHomeActivity();
+                    try {
+                        getView().finish();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     getView().showError(response.getDescription());
                 }

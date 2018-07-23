@@ -3,9 +3,11 @@ package com.example.roma.patientapp.dagger;
 import com.example.roma.patientapp.presentation.doctor_details.DoctorDetailsActivity;
 import com.example.roma.patientapp.presentation.edit_profile.update_info.EditProfileFragment;
 import com.example.roma.patientapp.presentation.edit_profile.update_pw.ChangePasswordFragment;
+import com.example.roma.patientapp.presentation.edit_profile.upload_image.UploadImageFragment;
 import com.example.roma.patientapp.presentation.home.appointments.AppointmentsFragment;
 import com.example.roma.patientapp.presentation.home.book_appointment.AppointmentBookedActivity;
 import com.example.roma.patientapp.presentation.home.HomeActivity;
+import com.example.roma.patientapp.presentation.home.search_doctor.SearchDoctorFragment;
 import com.example.roma.patientapp.presentation.login.SignInActivity;
 import com.example.roma.patientapp.presentation.splash.SplashActivity;
 
@@ -32,4 +34,8 @@ public interface AppComponent {
     void inject(AppointmentsFragment appointmentsFragment);
 
     void inject(SplashActivity splashActivity);
+
+    void inject(UploadImageFragment uploadImageFragment);
+
+    void inject(SearchDoctorFragment searchDoctorFragment);
 }

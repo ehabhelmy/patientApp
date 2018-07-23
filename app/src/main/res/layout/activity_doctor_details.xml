@@ -101,20 +101,14 @@
         android:gravity="center_vertical">
 
         <TextView
-            android:id="@+id/days_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sun - Wed"
-            android:textSize="@dimen/sp13"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/time_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp3w"
-            android:text="4:30 PM - 6:30 PM"
-            android:textSize="@dimen/sp13" />
+            android:paddingLeft="@dimen/dp3w"
+            tools:text="4:30 PM - 6:30 PM"
+            android:lines="2"
+            android:ellipsize="end"
+            android:textSize="@dimen/sp12" />
     </LinearLayout>
 
     <View
@@ -144,7 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp3w"
-            android:text="Monday, Mar 26 | 6:30 PM"
+            tools:text="Monday, Mar 26 | 6:30 PM"
             android:textSize="@dimen/sp13" />
     </LinearLayout>
 

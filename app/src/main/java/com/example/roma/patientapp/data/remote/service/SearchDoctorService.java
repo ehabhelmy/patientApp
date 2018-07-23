@@ -16,6 +16,8 @@ public interface SearchDoctorService {
     @POST("searchDoctor")
     Observable<SearchDoctorResponse> searchDoctor(@Field("token") String token,
                                                   @Field("doctorName") String doctorName,
+                                                  @Field("specialityType") String specialityType,
+                                                  @Field("region") String region,
                                                   @Field("start") String start,
                                                   @Field("limit") String limit);
 }

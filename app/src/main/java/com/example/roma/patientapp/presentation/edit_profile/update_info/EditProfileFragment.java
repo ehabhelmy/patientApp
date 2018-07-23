@@ -116,4 +116,6 @@ public class EditProfileFragment extends BaseFragment implements EditProfileCont
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         }
       }
+
+
 }

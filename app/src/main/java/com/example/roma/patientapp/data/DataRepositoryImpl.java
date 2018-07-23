@@ -43,6 +43,7 @@ public class DataRepositoryImpl implements DataRepository {
     @Override
     public Observable<SearchDoctorResponse> SearchDoctor(Map<String, Object> parameters) {
         parameters.put(Constants.TOKEN, getToken());
+        parameters.put(Constants.REGION,getSignInResponse().getUserInfo().getRegion());
         return remoteRepository.searchDoctor(parameters);
     }
 
@@ -102,6 +103,11 @@ public class DataRepositoryImpl implements DataRepository {
     @Override
     public String getToken() {
         return localRepository.getToken();
+    }
+
+    @Override
+    public void clearToken() {
+        localRepository.clearToken();
     }
 
     @Override

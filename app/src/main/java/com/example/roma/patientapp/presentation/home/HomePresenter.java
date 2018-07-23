@@ -1,14 +1,19 @@
 package com.example.roma.patientapp.presentation.home;
 
+import android.content.Intent;
+
 import com.example.roma.patientapp.data.model.regions.RegionResponse;
 import com.example.roma.patientapp.data.model.search_doctor.Doctor;
 import com.example.roma.patientapp.data.model.search_doctor.SearchDoctorResponse;
 import com.example.roma.patientapp.data.model.specialities.SpecialitiesResponse;
+import com.example.roma.patientapp.data.model.specialities.Speciality;
 import com.example.roma.patientapp.domain.usecase.AllRegionsUseCase;
 import com.example.roma.patientapp.domain.usecase.AllSpecialitiesUseCase;
 import com.example.roma.patientapp.domain.usecase.SearchDoctorUseCase;
+import com.example.roma.patientapp.domain.usecase.TokenUseCase;
 import com.example.roma.patientapp.domain.usecase.base.DefaultObserver;
 import com.example.roma.patientapp.presentation.base.BasePresenter;
+import com.example.roma.patientapp.presentation.login.SignInActivity;
 import com.example.roma.patientapp.utils.constants.Constants;
 
 import java.util.ArrayList;
@@ -21,17 +26,17 @@ import javax.inject.Inject;
  * Created by Romisaa on 6/15/2018.
  */
 
-public class HomePresenter extends BasePresenter<HomeActivity> implements HomeContract.Presenter {
+public class HomePresenter extends BasePresenter<HomeContract.View> implements HomeContract.Presenter {
 
-    private SearchDoctorUseCase searchDoctorUseCase;
     private AllSpecialitiesUseCase allSpecialitiesUseCase;
     private AllRegionsUseCase allRegionsUseCase;
+    private TokenUseCase tokenUseCase;
 
     @Inject
-    public HomePresenter(SearchDoctorUseCase searchDoctorUseCase, AllSpecialitiesUseCase allSpecialitiesUseCase, AllRegionsUseCase allRegionsUseCase) {
-        this.searchDoctorUseCase = searchDoctorUseCase;
+    public HomePresenter(AllSpecialitiesUseCase allSpecialitiesUseCase, AllRegionsUseCase allRegionsUseCase, TokenUseCase tokenUseCase) {
         this.allSpecialitiesUseCase = allSpecialitiesUseCase;
         this.allRegionsUseCase = allRegionsUseCase;
+        this.tokenUseCase = tokenUseCase;
     }
 
     @Override
@@ -59,34 +64,8 @@ public class HomePresenter extends BasePresenter<HomeActivity> implements HomeCo
         navigationManager.navigateToAboutFragment();
     }
 
-    @Override
-    public void searchDoctor(String value) {
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put(Constants.DOCTOR_NAME, value);
-
-        searchDoctorUseCase.execute(parameters, new DefaultObserver<SearchDoctorResponse>() {
-            @Override
-            public void onNext(SearchDoctorResponse searchDoctorResponse) {
-                super.onNext(searchDoctorResponse);
-                if (searchDoctorResponse.getId() == 0) {
-                    if (isViewAttached()) {
-                        getView().loadData((ArrayList<Doctor>) searchDoctorResponse.getDoctors());
-                    }
-                }else {
-                    if (isViewAttached()){
-                        getView().showError(searchDoctorResponse.getDescription());
-                    }
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                super.onError(e);
-                if (isViewAttached()){
-                    getView().showError("Server Error");
-                }
-            }
-        });
+    public void navigateToHomeFragment() {
+        navigationManager.navigateToHomeActivity();
     }
 
     @Override
@@ -97,6 +76,21 @@ public class HomePresenter extends BasePresenter<HomeActivity> implements HomeCo
                 super.onNext(specialitiesResponse);
                 if (specialitiesResponse.getId() == 0) {
                     allSpecialitiesUseCase.saveSpecialitiesResponse(specialitiesResponse);
+                    if (isViewAttached()){
+                        getView().loadData(specialitiesResponse.getSpecialities());
+                    }
+                }else {
+                    if (isViewAttached()){
+                        getView().showError(specialitiesResponse.getDescription());
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                if (isViewAttached()){
+                    getView().showError("Server Error");
                 }
             }
         });
@@ -113,5 +107,17 @@ public class HomePresenter extends BasePresenter<HomeActivity> implements HomeCo
                 }
             }
         });
+    }
+
+    @Override
+    public void navigateToSearchFragment(Speciality speciality) {
+        navigationManager.navigateToSearchFragment(speciality);
+    }
+
+    public void handleUserLogout() {
+        tokenUseCase.clearToken();
+        if (isViewAttached()) {
+            getView().navigateToAuth();
+        }
     }
 }

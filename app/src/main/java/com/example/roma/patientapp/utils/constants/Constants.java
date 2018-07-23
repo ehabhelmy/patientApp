@@ -27,4 +27,5 @@ public class Constants {
     public static final String M_NUMBER = "mobile_number";
     public static final String EMAIL = "email";
     public static final String REGION = "region";
+    public static final String DOCTOR_SPEC = "doctorSpeciality";
 }

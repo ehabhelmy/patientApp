@@ -72,4 +72,5 @@ public interface DataRepository {
 
     Observable<UpdateInfoModel> updateInfo(Map<String,Object> parameters);
 
+    void clearToken();
 }

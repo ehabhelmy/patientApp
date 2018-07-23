@@ -3,6 +3,7 @@ package com.example.roma.patientapp.data.local;
 
 import android.content.SharedPreferences;
 
+import com.example.roma.patientapp.utils.constants.PrefrenceConstants;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -69,7 +70,7 @@ public class PreferencesManager {
     }
 
     public void clearSharedPreferences() {
-        this.sharedPreferences.edit().clear().commit();
+        this.sharedPreferences.edit().clear().apply();
     }
 
     public void saveObject(String key, Object object) {
@@ -106,6 +107,10 @@ public class PreferencesManager {
         }else {
             return null;
         }
+    }
+
+    public void clearToken() {
+        sharedPreferences.edit().remove(PrefrenceConstants.SIGNIN_RESPONSE).apply();
     }
 }
 

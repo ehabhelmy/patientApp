@@ -9,10 +9,14 @@ import android.widget.TextView;
 
 import com.example.roma.patientapp.PatientApplication;
 import com.example.roma.patientapp.R;
+import com.example.roma.patientapp.data.model.doctor_details.DoctorAppointment;
 import com.example.roma.patientapp.data.model.search_doctor.Doctor;
 import com.example.roma.patientapp.presentation.base.BaseActivity;
 import com.example.roma.patientapp.presentation.doctor_details.adapter.DoctorDetailsModel;
+import com.example.roma.patientapp.utils.DateUtils;
 import com.example.roma.patientapp.utils.constants.Constants;
+
+import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -29,8 +33,6 @@ public class DoctorDetailsActivity extends BaseActivity implements DoctorDetails
     TextView speciality;
     @BindView(R.id.price_tv)
     TextView price;
-    @BindView(R.id.days_tv)
-    TextView days;
     @BindView(R.id.time_tv)
     TextView time;
     @BindView(R.id.first_day_tv)
@@ -90,6 +92,20 @@ public class DoctorDetailsActivity extends BaseActivity implements DoctorDetails
         price.setText("Fees " + model.getPrice() + " EGP" + "(" + model.getDiscount() + "% " + "Discount)");
         address.setText(model.getAddress());
         rating.setText(model.getRate());
+        time.setText(getDoctorTimes(model));
+        firstAvaliableTime.setText(model.getFirstAvailableDate() + " " + model.getFirstAvailableTime());
+    }
+
+    private String getDoctorTimes(DoctorDetailsModel model) {
+        StringBuilder times = new StringBuilder("");
+        for (int i=0; i<model.getDoctorAppointments().size(); i++) {
+            times.append(DateUtils.convertDayNumToString(model.getDoctorAppointments().get(i).getDay()).substring(0, 3));
+            times.append(" ").append(model.getDoctorAppointments().get(i).getFromHour()).append(" to ").append(model.getDoctorAppointments().get(i).getToHour());
+            if(i+1 < model.getDoctorAppointments().size()) {
+                times.append(", ");
+            }
+        }
+        return times.toString();
     }
 
     @Override
@@ -107,4 +123,10 @@ public class DoctorDetailsActivity extends BaseActivity implements DoctorDetails
         intent.setPackage("com.google.android.apps.maps");
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        navigationManager.navigateToHomeActivity();
+    }
+
 }
