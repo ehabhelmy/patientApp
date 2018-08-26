@@ -7,6 +7,8 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.Espresso.*;
+import static android.support.test.espresso.matcher.ViewMatchers.*;
 import static org.junit.Assert.*;
 
 /**
@@ -23,4 +25,5 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.example.roma.patientapp", appContext.getPackageName());
     }
+
 }
